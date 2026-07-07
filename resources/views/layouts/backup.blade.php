@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', __('Backup Manager')) - {{ config('app.name') }}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ route('backup.styles') }}">
 </head>
 <body class="bg-gray-50 antialiased">
     <div class="min-h-screen flex">

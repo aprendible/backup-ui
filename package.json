@@ -1,0 +1,12 @@
+{
+    "name": "@aprendible/backup-ui",
+    "private": true,
+    "description": "Build tooling for the Backup UI package stylesheet.",
+    "scripts": {
+        "build": "tailwindcss -i resources/css/backup-ui.css -o resources/dist/backup-ui.css --minify",
+        "watch": "tailwindcss -i resources/css/backup-ui.css -o resources/dist/backup-ui.css --watch"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.1"
+    }
+}

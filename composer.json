@@ -1,10 +1,12 @@
 {
     "name": "aprendible/backup-ui",
-    "description": "This is my package backup-ui",
+    "description": "A clean admin UI for spatie/laravel-backup: run, download, clean and monitor your Laravel backups.",
     "keywords": [
         "aprendible",
         "laravel",
-        "backup-ui"
+        "backup",
+        "backup-ui",
+        "spatie-backup"
     ],
     "homepage": "https://github.com/aprendible/backup-ui",
     "license": "MIT",
@@ -35,8 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Aprendible\\BackupUi\\": "src/",
-            "Aprendible\\BackupUi\\Database\\Factories\\": "database/factories/"
+            "Aprendible\\BackupUi\\": "src/"
         }
     },
     "autoload-dev": {
@@ -64,10 +65,7 @@
         "laravel": {
             "providers": [
                 "Aprendible\\BackupUi\\BackupUiServiceProvider"
-            ],
-            "aliases": {
-                "BackupUi": "Aprendible\\BackupUi\\Facades\\BackupUi"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

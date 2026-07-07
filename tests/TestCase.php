@@ -2,28 +2,19 @@
 
 namespace Aprendible\BackupUi\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Aprendible\BackupUi\BackupUiServiceProvider;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Gate;
+use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Backup\BackupServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Aprendible\\BackupUi\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
             BackupUiServiceProvider::class,
-            \Spatie\Backup\BackupServiceProvider::class,
+            BackupServiceProvider::class,
         ];
     }
 
@@ -55,9 +46,10 @@ class TestCase extends Orchestra
 
     protected function authorizeBackupAccess(): void
     {
-        $user = new class(['name' => 'Test']) extends \Illuminate\Foundation\Auth\User
+        $user = new class(['name' => 'Test']) extends User
         {
             protected $table = 'users';
+
             protected $fillable = ['name'];
         };
 

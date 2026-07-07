@@ -4,6 +4,7 @@ namespace Aprendible\BackupUi;
 
 use Aprendible\BackupUi\Commands\BackupUiCommand;
 use Aprendible\BackupUi\Http\Controllers\BackupController;
+use Aprendible\BackupUi\Http\Controllers\BackupUiStylesController;
 use Aprendible\BackupUi\Http\Controllers\CleanBackupsController;
 use Aprendible\BackupUi\Http\Controllers\DownloadBackupController;
 use Aprendible\BackupUi\Http\Controllers\RunBackupController;
@@ -22,7 +23,6 @@ class BackupUiServiceProvider extends PackageServiceProvider
             ->name('backup-ui')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_backup_ui_table')
             ->hasCommand(BackupUiCommand::class);
     }
 
@@ -37,6 +37,12 @@ class BackupUiServiceProvider extends PackageServiceProvider
     {
         $prefix = config('backup-ui.routes.prefix', 'backup');
         $middleware = config('backup-ui.routes.middleware', ['web']);
+
+        Route::prefix($prefix)
+            ->name('backup.')
+            ->group(function (): void {
+                Route::get('/backup-ui.css', BackupUiStylesController::class)->name('styles');
+            });
 
         Route::middleware([...$middleware, AuthorizeBackupAccess::class])
             ->prefix($prefix)

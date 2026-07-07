@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Event;
-use Spatie\Backup\Events\BackupWasSuccessful;
 
 beforeEach(function () {
     $this->authorizeBackupAccess();

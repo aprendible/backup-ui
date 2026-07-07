@@ -11,10 +11,12 @@ class AuthorizeBackupAccess
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Gate::has('backup-access')) {
-            Gate::authorize('backup-access');
+        $gate = config('backup-ui.gate') ?: 'backup-access';
+
+        if (Gate::has($gate)) {
+            Gate::authorize($gate);
         } else {
-            abort(403, 'Backup access not configured. Define a "backup-access" gate.');
+            abort(403, "Backup access not configured. Define a \"{$gate}\" gate.");
         }
 
         return $next($request);

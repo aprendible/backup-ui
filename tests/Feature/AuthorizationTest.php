@@ -36,6 +36,7 @@ it('applies the middleware to all backup routes', function () {
 
     $routes = collect(Route::getRoutes())->filter(
         fn ($route) => str_starts_with($route->uri(), 'backup')
+            && $route->getName() !== 'backup.styles'
     );
 
     expect($routes)->not->toBeEmpty();
