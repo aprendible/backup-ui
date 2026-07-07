@@ -7,6 +7,7 @@ use Aprendible\BackupUi\Http\Controllers\BackupController;
 use Aprendible\BackupUi\Http\Controllers\CleanBackupsController;
 use Aprendible\BackupUi\Http\Controllers\DownloadBackupController;
 use Aprendible\BackupUi\Http\Controllers\RunBackupController;
+use Aprendible\BackupUi\Http\Controllers\SettingsController;
 use Aprendible\BackupUi\Http\Middleware\AuthorizeBackupAccess;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schedule;
@@ -42,6 +43,7 @@ class BackupUiServiceProvider extends PackageServiceProvider
             ->name('backup.')
             ->group(function (): void {
                 Route::get('/', [BackupController::class, 'index'])->name('index');
+                Route::get('/settings', SettingsController::class)->name('settings');
                 Route::post('/run', RunBackupController::class)->name('run');
                 Route::post('/clean', CleanBackupsController::class)->name('clean');
                 Route::get('/{filename}/download', DownloadBackupController::class)->name('download');
