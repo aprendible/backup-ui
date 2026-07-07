@@ -1,6 +1,17 @@
 <?php
 
-// config for Aprendible/BackupUi
 return [
+
+    'gate' => null,
+
+    'schedule' => [
+        'backup' => true,
+        'clean' => true,
+    ],
+
+    'routes' => [
+        'prefix' => 'backup',
+        'middleware' => ['web'],
+    ],
 
 ];
