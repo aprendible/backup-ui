@@ -18,29 +18,8 @@ Follow the steps below to get the UI running end to end.
 
 ### 1. Install the package with Composer
 
-**From Packagist (published version):**
-
 ```bash
 composer require aprendible/backup-ui
-```
-
-**From a local path (while developing the package in `packages/backup-ui`):**
-
-Add a path repository to your application's `composer.json`, then require it:
-
-```json
-{
-    "repositories": [
-        {
-            "type": "path",
-            "url": "packages/backup-ui"
-        }
-    ]
-}
-```
-
-```bash
-composer require aprendible/backup-ui:@dev
 ```
 
 The service provider is registered automatically via package discovery — no manual `config/app.php` changes are required.
