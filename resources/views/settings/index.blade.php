@@ -210,16 +210,16 @@
                 @forelse ($monitoredBackups->monitorBackups as $monitored)
                     <div class="border border-gray-100 rounded-lg p-4 space-y-3">
                         <div class="flex items-center justify-between">
-                            <h4 class="text-sm font-medium text-gray-900">{{ $monitored->name }}</h4>
+                            <h4 class="text-sm font-medium text-gray-900">{{ $monitored['name'] }}</h4>
                             <div class="flex gap-1">
-                                @foreach ($monitored->disks as $disk)
+                                @foreach ($monitored['disks'] as $disk)
                                     <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">{{ $disk }}</span>
                                 @endforeach
                             </div>
                         </div>
-                        @if (! empty($monitored->healthChecks))
+                        @if (! empty($monitored['healthChecks']))
                             <div class="space-y-1">
-                                @foreach ($monitored->healthChecks as $check => $value)
+                                @foreach ($monitored['healthChecks'] as $check => $value)
                                     <p class="text-xs text-gray-500">
                                         {{ class_basename($check) }}: {{ $value }}
                                         @if (str_contains(class_basename($check), 'Age'))

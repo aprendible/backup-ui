@@ -1,11 +1,30 @@
 <?php
 
 use Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification;
+use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays;
 
 use function Pest\Laravel\get;
 
 beforeEach(function () {
     $this->authorizeBackupAccess();
+});
+
+test('settings page shows monitored backups', function () {
+    config()->set('backup.monitor_backups', [
+        [
+            'name' => 'monitored-app',
+            'disks' => ['backup-test'],
+            'health_checks' => [
+                MaximumAgeInDays::class => 1,
+            ],
+        ],
+    ]);
+
+    get(route('backup.settings'))
+        ->assertOk()
+        ->assertSee('monitored-app')
+        ->assertSee('backup-test')
+        ->assertSee('MaximumAgeInDays');
 });
 
 test('settings page is displayed with backup config', function () {
